@@ -15,12 +15,19 @@ class Day3Test {
     void testDay3() throws IOException {
         String fileData = InputOutputUtils.readResourceFileData("day3/day3input.txt");
 
-        Day3 day3 = new Day3(fileData, false);
+        Day3 day3 = new Day3(fileData, true);
         Long result = day3.call();
 
         LOGGER.info("Day3 result: {}", result);
 
         Assertions.assertEquals(17321L, result);
+    }
+
+    @Test
+    void testDay3WithProfiling() throws Exception {
+        String fileData = InputOutputUtils.readResourceFileData("day3/day3input.txt");
+
+        Day3.runDay(fileData, 100);
     }
 
     @Test

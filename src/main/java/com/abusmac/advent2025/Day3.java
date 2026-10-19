@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.concurrent.Callable;
 import java.util.stream.Collectors;
 
-public class Day3 implements Callable<Long> {
+public class Day3 extends BaseDay {
     private static final Logger LOGGER = LoggerFactory.getLogger(Day3.class);
 
     private final String input;
@@ -40,7 +40,7 @@ public class Day3 implements Callable<Long> {
         return result;
     }
 
-    private long getBatteryJoltage(String line) {
+    protected long getBatteryJoltage(String line) {
         List<String> digits = StringUtils.splitIntoSameLengthNumbers(line, line.length(), 1);
         ArrayList<Integer> dgts = digits.stream().map(Integer::parseInt).collect(Collectors.toCollection(ArrayList::new));
 
@@ -116,5 +116,9 @@ public class Day3 implements Callable<Long> {
         }
 
         return Integer.valueOf(leftDigit + String.valueOf(rightDigit));
+    }
+
+    protected static Callable<? extends Number> getCallable(String input, boolean enableLogs) {
+        return new Day3(input, enableLogs);
     }
 }
